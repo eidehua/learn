@@ -1,0 +1,4 @@
+A tree is a data structure that is composed of nodes, where each node is linked to a number of children, which are also nodes. 
+A node is a data structure containing data, and arrows or "pointers" to its children. 
+We can visualize the concept of this data structure of nodes as a tree. 
+A binary tree is a tree where the max number of children per nodes is 2.
