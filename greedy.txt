@@ -1,0 +1,3 @@
+What is a greedy algorithm? 
+Definition of greedy
+Definition of greedy algorithm in turn focuses on optimizing or getting the best answer at every step.
