@@ -1,1 +1,27 @@
+I have found the easiest way to think about dynamic programming is to visualize what it does. Let us represent an execution of a recursive function as a tree-node. It's children are the recursive calls inside the recursive function. 
 
+For example, let us define a recursive function as follows:
+
+int recurse(int N){
+  if(N <=1){
+    return 1;
+  }
+  return recurse(N-1) + recurse(N-2);
+}
+
+Now, let us call recurse(10);
+You should draw out the recursive tree to follow on (at least get to a few base cases)
+A good idea is to depict the node as follows
+
+(N = 10, return = __)
+And you fill in the return value after you have hit the base case and work your way up.
+
+You should notice a lot of nodes share N values. We are doing our recursive function many times for N = 4 for example!
+But this is unnecessary. All our nodes with recurse(4) have the same return value! 
+
+So what if we store the result of recurse(4), and use it whenever we see another recurse(4)? And what if we generalize this for any input parameter?
+We would save a lot of recursive calls, and doing so save a lot of stack space (since each recursive call adds a stack frame). 
+
+But what do we lose? We need to keep track of recurse(i) for all i > 1
+We need O(n) space to track the values of recurse(i). However usually this trade off is worth it. 
+This is the key idea of dynamic programming: memoize (store function call results).
