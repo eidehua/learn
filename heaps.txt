@@ -1,3 +1,5 @@
 Min heap
 Max heap
 How to implement a heap
+
+Think of a tree with an invariant placed on every node ( a property) that needs to be met for every node
