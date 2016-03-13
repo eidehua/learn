@@ -1,1 +1,2 @@
-# lear
+# learn
+how
