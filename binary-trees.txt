@@ -4,3 +4,7 @@ We can visualize the concept of this data structure of nodes as a tree.
 A binary tree is a tree where the max number of children per nodes is 2.
 
 How can we visualize what a node is? 
+A node for a binary tree stores three pieces of critical information: 
+(1) data (of course, to be a data structure)
+(2) left child (telling me how I can get to the left node)
+(3) right child (telling me how I can get to the right node)
