@@ -1,5 +1,9 @@
 
 Synchronization: the idea of
+
+Mutual exclusion
+  Deadlock
+  
 Threads
 Locks
 
