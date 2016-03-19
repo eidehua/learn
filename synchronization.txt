@@ -1,1 +1,4 @@
 
+Synchronization: the idea of
+Threads
+Locks
