@@ -1,5 +1,5 @@
-
-Synchronization: the idea of
+Multi threads: multiple threads work together. Shared memory.
+Synchronization: the idea of making sure these threads work together properly (correctly)
 
 Mutual exclusion
   Deadlock
