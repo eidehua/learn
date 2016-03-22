@@ -1,3 +1,5 @@
-C: Pass by Value
 Java: Pass by value. (Passes references by value (memory address))
+
+C: Pass by Value
 C++: Pass by value (v) , pass by reference (&v)
+http://stackoverflow.com/questions/1698660/when-i-change-a-parameter-inside-a-function-does-it-change-for-the-caller-too
