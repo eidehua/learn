@@ -1,1 +1,3 @@
-
+C: Pass by Value
+Java: Pass by value. (Passes references by value (memory address))
+C++: Pass by value (v) , pass by reference (&v)
