@@ -25,3 +25,6 @@ We would save a lot of recursive calls, and doing so save a lot of stack space (
 But what do we lose? We need to keep track of recurse(i) for all i > 1
 We need O(n) space to track the values of recurse(i). However usually this trade off is worth it. 
 This is the key idea of dynamic programming: memoize (store function call results).
+
+
+Top down vs bottom up approach for dynamic programming
