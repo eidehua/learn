@@ -3,3 +3,6 @@ Definition of greedy
 Definition of greedy algorithm in turn focuses on optimizing or getting the best answer at every step.
 
 Another way of viewing a greedy algorithm is, given the best result on the rest my function calls, how can I optimize the current function call? 
+
+When being greedy fails:
+  awdadd
