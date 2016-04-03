@@ -28,3 +28,8 @@ This is the key idea of dynamic programming: memoize (store function call result
 
 
 Top down vs bottom up approach for dynamic programming
+Top down:
+My solution for (n) = solution for (n-1) + something
+
+bottom up
+build up to solution for (n) from base case
