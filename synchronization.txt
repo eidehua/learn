@@ -2,7 +2,14 @@ Multi threads: multiple threads work together. Shared memory.
 Synchronization: the idea of making sure these threads work together properly (correctly)
 
 Mutual exclusion
-  Deadlock
+Deadlock
+4 conditions for deadlock
+non-shareable resources
+no preemption on lock
+hold and wait
+circular wait
+
+All 4 conditions must hold for deadlock!
   
 Threads
 Locks
