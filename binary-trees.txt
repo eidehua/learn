@@ -8,3 +8,7 @@ A node for a binary tree stores three pieces of critical information:
 (1) data (of course, to be a data structure)
 (2) left child (telling me how I can get to the left node)
 (3) right child (telling me how I can get to the right node)
+
+Binary tree algorithms:
+Traversal
+Search
