@@ -12,3 +12,5 @@ A node for a binary tree stores three pieces of critical information:
 Binary tree algorithms:
 Traversal
 Search
+
+Inorder predecessor
