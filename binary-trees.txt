@@ -14,3 +14,4 @@ Traversal
 Search
 
 Inorder predecessor
+The inorder predecessor of node N is the right-most node in the left subtree
