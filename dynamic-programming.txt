@@ -29,7 +29,8 @@ This is the key idea of dynamic programming: memoize (store function call result
 
 Top down vs bottom up approach for dynamic programming
 Top down:
-My solution for (n) = solution for (n-1) + something
+My solution for (n) = solution for (n-1) + something for (n-2)
+Memoization works well in this case. So that when we are looking for done with (n-1) tree, we can use stored values for the (n-1) tree branch
 
 bottom up
 build up to solution for (n) from base case
