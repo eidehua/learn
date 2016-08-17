@@ -103,6 +103,24 @@ Greedy: What is the best solution (max combos) for X? Well, how can we use subpr
 /////////////////
 Method 2:
   Where the previous problem took the SUMS of previous subproblems, this will take the MAX.
+  
+  Unbounded knapsack problem
+The knapsack problem or rucksack problem is a problem in combinatorial optimization: Given a set of items, each with a weight and a value, determine the number of each item to include in a collection so that the total weight is less than or equal to a given limit and the total value is as large as possible.
+
+  Say you have items [(5, 10), (6, 20), (9,25)]
+  So best value for X weight is what?
+  The max of:
+    10 + best_value_for_weight(X-5)
+    20 + best_value_for_weight(X-6)
+    25 + best_value_for_weight(X-9)
+
+  To generalize: the best value if we take an item as our "last" item, is the item's value + best value we can use for the remaining weight. 
+  
+  So why can we use the "last item" concept here, and not in the coin example?
+    We don't care about the COMBINATIONS of ways to get the best possible answer.
+      If there are multiple ways to form the same BEST VALUE of items that form the best value,
+      we would do some double counting of combinations
+      but since we are dealing with MAX here, these double countings don't matter (cuz they have same VALUE)
 
 
 When being greedy fails:
