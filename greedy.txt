@@ -4,7 +4,105 @@ Definition of greedy: algorithm in turn focuses on optimizing or getting the bes
 
 Another way of viewing a greedy algorithm is, given the best result on my function calls up to this point, how can I optimize the current function call? 
 
+///////////////////
 Two examples of what "best result of everything up to now" means:
+
+Using coins from a list of denominations, find the amount of combinations to get the a certain sum, X
+Eg denoms = [1,2,3,4]. sum = 6
+How to get all the possibilities that sum to 6?
+1+1+1+1+2, 1+1+1+3, 1+1+1+1+2, 1+1+1+1+1+1 
+2+2+1+1, etc... how do we figure out all possible combos?
+
+                0: 0
+All combos for  1: 1
+                2: 1+1, 2
+                3: 1+1+1, 2+1, 3
+                4: 1+1+1+1, 2+1+1, 3+1, 4
+                5: 1+1+1+1+1, 2+1+1+1, 3+1+1, 3+2, 4+1
+                6: 1+1+1+1+1+1, 2+1+1+1+1, 3+1+1+1, 3+2=1, 4+1+1, 4+2
+
+Greedy: What is the best solution (max combos) for X? Well, how can we use subproblems to help us?
+        
+        Solution 1 (weak)
+        For every new amount, loop through the (last coin)
+          What's the issue with this? OVERLAPPING!!!! "last coin is not unique"
+          This is a big problem, because we get stuff like 1+2 and 2+1 being considered DIFFERENT
+          when in this coins case, we only care about the combinations, NOT the permutations
+          **(Although this would be great for a permutation question)
+        How can we get 1? 
+          Last coin = 1: 1-1 = 0. (1) possibility [1]
+        How can we get 2?
+          Last coin = 2: 2-2=0. (1) possibility 
+           + Last coin = 1: 2-1 = 1. So if the last coin is 1, we need the remaining coins to sum up to 1. This gives us (1) possibility
+          2 possibilities total [2, 1+1]
+        How can we get 3?
+          Last coin = 3: 3-3=0. (1) possibility
+          + Last coin = 2: 3-2=1. (1) possibility (from How can we get 1?)
+          + Last coin = 1: 3-1 = 2. (2) possibilities (from how we can get 2)
+            aka every way we get 2, we add the last coin to.
+            Eg we had [2,1+1] as ways to get 2. (2 possibilities).
+            To get three, we now have [2+1, 1+1+1] = (2 possibilities)
+         = 4 possibilities [3, 1+2, 2+1, 1+1+1]
+
+        Let's look at 4 for instance. What are the number of combos for 4? From above, we see 4 possibilities.
+        How can we get 4? Each combo is a SEQUENCE of coins. There will always be a LAST coin. 
+        We can have 4 kinds of last coins: 1,2,3,4.
+          Last coin = 4: 4-4= 0. (1) [4]
+          Last coin = 3: 4-3 = 1. (1) [1 + 3]
+          Last coin = 2: 4-2 = 2. (2) [2+2, 1+1+2]
+          Last coin = 1: 4-1 = 3. (4) [3+1, 1+2+1, 2+
+        
+        This method has an issue of some overlap though...
+        
+        Better method: (Adding a new coin at a time. Then looping through the amounts to see what gets updated)
+          Introduce one new coin at a time. 
+            For each amount from [0, amount], calculate how many ways we can get to it, using this new coin.
+          For example, amount = 4, coins = [1,2,3,4], ways=[1,0,0,0,0]
+          (The first entry is convenience, there is 1 way to make 0 amount)
+          Add coin: 1.
+            How to make amount = 1 with this new coin? Amount - 1 = 1 - 1 = 0. ways=[1,1,0,0,0] (encoding [_, 1, _, _, _] )
+            How to make amount = 2? 2-1=1. So we need to know the ways ot make amount (1), then stick another 1 coin at end!
+              ways = [1,1,1,0,0] (encoding [_, 1, 1+1, _, _])
+            How to make amount=3? 3-1=2. 
+              ways = [1,1,1,1,0] (encoding [_, 1, 1+1, 1+1+1, _])
+            How to make amount = 4? 4-1 = 3
+              ways = [1,1,1,1,1] ([_, 1, 1+1, 1+1+1, 1+1+1+1]
+              
+          Now add coin 2
+            How to make amount = 1 with this new coin? No way! Just start at amount = coin
+            How to make amount = 2 with this new coin?
+              2-2 = 0. Found 1 more new way!
+              ways = [1,1,2,1,1] (_,1, 1+1 2, 1+1+1, 1+1+1+1)
+            Amount = 3?
+              3-2 = 1. Add ways[1] to ways[3] 
+              ways = [1,1,2,2,1] (_, 1, 1+1 2, 1+1+1 1+2, 1+1+1+1)
+            Amount = 4?
+              *THIS IS KEY EXAMPLE
+              4-2 = 2. ways[4]+=ways[2]  (old ways[4] = [1+1+1+1]. ways[2] = [1+1, 2]. New ways[4] = [1+1+1+1, 1+1+2, 2+2+]
+              ways = [1,1,2,2,3] (_, 1, 1+1 2, 1+1+1 1+2, 1+1+1+1 1+1+2 2+2)
+          
+          Now add coin 3
+            Amount = 3
+              3-3 = 0: Ways[3]+=ways[0]
+              ways = [1,1,2,3,3] (_, 1, 1+1 2, 1+1+1 1+2 3, 1+1+1+1 1+1+2 2+2)
+            Amount = 4
+              4-3 = 1: ways[4]+=ways[1]
+              ways =[1,1,2,3,4] (_, 1, 1+1 2, 1+1+1 1+2 3, 1+1+1+1 1+1+2 2+2 1+3)
+          Now add coin 4
+            Amount = 4 ways[4] += ways[0]
+            ways = [1,1,2,3,5] ()
+            
+            In conclusion:
+            1: 1
+            2: 2
+            3: 3
+            4: 5
+          
+            
+        So we take knowledge from previous combination counts, and then SUM them.
+/////////////////
+Method 2:
+  Where the previous problem took the SUMS of previous subproblems, this will take the MAX.
 
 
 When being greedy fails:
