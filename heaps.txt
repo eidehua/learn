@@ -1,4 +1,8 @@
 Min heap: Node value is less than or equal to every child
+  Good use case: keeping track of top k values (from a stream of input)
+    keep adding to heap until there are k entries
+    After k entries, if next input value is < min, skip it
+    If new value is > min, add in new value, and pop out the min which is in O(logk) time
 Max heap: Node value is greater than or equal to every child
 How to implement a heap
 
